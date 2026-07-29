@@ -1,13 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=makeGinv
-#SBATCH --output=makeGinv_%j.out
-#SBATCH --error=makeGinv_%j.err
+#SBATCH --output=makeGinv_upd.out
+#SBATCH --error=makeGinv_upd.err
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=120G
 #SBATCH --time=24:00:00
-#SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=dermot.kelly@teagasc.ie
 
 set -euo pipefail
 module load apptainer/1.1.9
@@ -20,9 +18,9 @@ SCRIPT="$BASE/scripts/build_ginv.R"
 IMG="$HOME/Dermot_analysis/tidyverse_4.2.sif"
 
 # Input data
-PED="$BASE/data/pedigree_full_sas_style.csv"
-GRM_PREFIX="$BASE/data/sheep50k"             # expects sheep50k.grm + sheep50k.grm.id
-OUT_PREFIX="$BASE/results/sheep50k_Ginv"     # output .giv + .order
+PED="/home/dermot.kelly/Dermot_analysis/Phd/Paper_3/trial/upd_ped_fixed.csv.SRT"
+GRM_PREFIX="/home/dermot.kelly/Dermot_primary/refined_paper_3/data/sheep50k_p2"             # expects sheep50k.grm + sheep50k.grm.id
+OUT_PREFIX="/home/dermot.kelly/Dermot_analysis/Phd/Paper_3/trial/upd_sheep50k_Ginv"
 
 # Bind directories for Singularity container
 BIND_OPTS="--bind $HOME --bind /data/Genetics"

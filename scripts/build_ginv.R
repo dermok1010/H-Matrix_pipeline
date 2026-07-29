@@ -106,7 +106,7 @@ cat("   - A22 dimension:", dim(A22_full), "\n")
 # -------------------------------
 cat("\n[5/7] Building raw G from PLINK .grm...\n")
 Gtab <- fread(paste0(grm_prefix, ".grm"), header = FALSE)
-setnames(Gtab, c("i","j","rel","Nsnps"))
+setnames(Gtab, c("i","j","Nsnps","rel"))
 
 Gmat <- matrix(0, nG, nG)
 for (r in seq_len(nrow(Gtab))) {
